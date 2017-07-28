@@ -1,0 +1,15 @@
+FROM docker.elastic.co/logstash/logstash:5.5.0
+
+#Configurations and pipeline
+RUN rm -f /usr/share/logstash/pipeline/logstash.conf
+ADD pipeline/ /usr/share/logstash/pipeline/
+RUN rm -f /usr/share/logstash/config/logstash.yml
+ADD config/logstash.yml /usr/share/logstash/config/logstash.yml
+
+#Instal OpenSSL and configure certificate
+RUN mkdir /usr/share/logstash/keys/
+USER root
+RUN yum -y install openssl
+RUN openssl req -x509 -days 3650 -batch -nodes -newkey rsa:2048 -keyout /usr/share/logstash/keys/logstash.key -out /usr/share/logstash/keys/logstash.crt
+USER logstash
+ADD certificate/TrustExternalCARoot.crt /usr/share/logstash/keys/TrustExternalCARoot.crt

@@ -1,0 +1,14 @@
+# Docker Compose file for LOGSTASH
+
+# Build with:
+# docker-compose build logstash
+
+# Run with:
+# docker-compose up
+
+elk:
+  build: .
+  ports:
+    - "5044:5044"
+    - "8080:8080"
+    - "8081:8081"

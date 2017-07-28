@@ -1,0 +1,14 @@
+version: '3.1'
+
+services:
+  paymenta_elk:
+    image: elk
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5601:5601" #Kibana
+      - "9200:9200" #ElastiSearch
+      - "5044:5044" #Logstash - BEATS
+      - "8080:8080" #Logstash - HTTP
+      - "8081:8081" #Logstash - HTTP
