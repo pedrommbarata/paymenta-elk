@@ -2,5 +2,5 @@ http.host: "0.0.0.0"
 path.config: /usr/share/logstash/pipeline
 config.reload.automatic: false
 log.level: trace
-#xpack.monitoring.elasticsearch.url: http://elk:9200
-xpack.monitoring.enabled: false
+xpack.monitoring.elasticsearch.url: http://elk:9200
+xpack.monitoring.enabled: true
